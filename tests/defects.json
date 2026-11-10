@@ -274,6 +274,17 @@
    "root_cause": "Select rendered without a label.",
    "fix": "aria-label added; UI-20 now checks every visible control on the main screens.",
    "verified_by": "UI-20"
+  },
+  {
+   "id": "D-26",
+   "severity": "Medium",
+   "area": "Launcher",
+   "found_by": "GitHub Actions (clean machine)",
+   "status": "Fixed",
+   "issue": "On a machine that had never run the app, `run.py --selftest` crashed while saving the face models.",
+   "root_cause": "The models folder was only created by the normal start-up path, not by the model download itself.",
+   "fix": "The download creates its own folder.",
+   "verified_by": "GitHub Actions run on a clean runner"
   }
  ],
  "risks": [

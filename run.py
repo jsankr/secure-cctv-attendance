@@ -345,6 +345,7 @@ def ensure_mediamtx() -> Path:
 def ensure_face_models() -> bool:
     """Privacy blurring cannot run without the face detector, so these are mandatory."""
     ok = True
+    MODELS.mkdir(parents=True, exist_ok=True)  # a first-ever `run.py --selftest` reaches here before anything else creates it
     for name, (url, sha) in FACE_MODELS.items():
         dst = MODELS / name
         if dst.exists() and hashlib.sha256(dst.read_bytes()).hexdigest() == sha:
