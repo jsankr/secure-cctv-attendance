@@ -1,6 +1,17 @@
 {
  "defects": [
   {
+   "id": "D-27",
+   "severity": "Critical",
+   "area": "Authentication (MFA enrolment)",
+   "found_by": "GitHub Actions: first execution of the API suite",
+   "status": "Fixed",
+   "issue": "MFA enrolment always answered 'Invalid code', so no new account (including the first super admin) could finish registering or sign in.",
+   "root_cause": "The replay-safe TOTP check introduced for D-07 also required MFA to be already enabled, which is never true during enrolment.",
+   "fix": "Enrolment verifies the code against the pending secret explicitly; every other check still requires enabled MFA.",
+   "verified_by": "FN-01 and every API test that registers a user"
+  },
+  {
    "id": "D-01",
    "severity": "High",
    "area": "AI worker",

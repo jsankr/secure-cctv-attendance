@@ -52,9 +52,11 @@ def media_decrypt(blob: bytes) -> bytes:
     return vmscrypto.decrypt_bytes(blob, media_key=MEDIA_KEY)
 
 
-def verify_totp(u: models.User, code: str) -> bool:
-    """TOTP with strict replay protection (each time step usable once). Caller commits the session."""
-    if not u.totp_enabled or not u.totp_secret:
+def verify_totp(u: models.User, code: str, enrolling: bool = False) -> bool:
+    """TOTP with strict replay protection (each time step usable once). Caller commits the session.
+    `enrolling` is only for the enrolment step, where the secret exists but MFA is not yet switched on;
+    everywhere else an account without enabled MFA can never pass."""
+    if not u.totp_secret or (not u.totp_enabled and not enrolling):
         return False
     ok, marker = totp_verify(dec(u.totp_secret), code, u.last_totp)
     if ok:

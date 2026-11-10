@@ -105,7 +105,7 @@ def enroll(body: EnrollIn, request: Request, response: Response, db: Session = D
     rate_limit("enroll:" + client_ip(request))
     c = read_token(body.setup_token, "mfa_setup")
     u = db.get(models.User, int(c["sub"])) if c else None
-    if not u or u.totp_enabled or not _totp_ok(u, body.totp):
+    if not u or u.totp_enabled or not verify_totp(u, body.totp, enrolling=True):
         raise HTTPException(401, "Invalid code")
     u.totp_enabled = True
     db.commit()
