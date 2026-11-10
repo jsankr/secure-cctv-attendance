@@ -1,0 +1,25 @@
+# Local data, secrets and build output: never commit
+.laptop/
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite3
+secrets.json
+setup-code.txt
+FIRST-LOGIN.txt
+settings.env
+data/
+# Downloaded models (fetched with pinned SHA-256 by run.py); the anti-spoof models are vendored
+/models/*
+!/models/antispoof/
+__pycache__/
+*.pyc
+.export-venv/
+.venv/
+venv/
+tests/.last_results.json
+tests/.tmp_*
+.pytest_cache/
+.DS_Store
+.ci-home/

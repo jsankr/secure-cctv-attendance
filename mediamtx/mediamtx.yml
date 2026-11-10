@@ -1,0 +1,41 @@
+# MediaMTX: RTSP ingest from cameras, WebRTC/LL-HLS to browsers, recording + playback.
+# Every request (viewers, API, playback) is authorised by the VMS API hook.
+logLevel: info
+
+authMethod: http
+authHTTPAddress: http://api:8000/internal/mediamtx-auth
+authHTTPExclude: []          # default excludes api/metrics: keep EVERYTHING behind the hook
+
+api: yes
+apiAddress: :9997
+metrics: no
+pprof: no
+
+rtsp: yes
+rtspAddress: :8554
+protocols: [tcp]
+rtmp: no
+srt: no
+
+hls: yes
+hlsAddress: :8888
+hlsVariant: lowLatency
+hlsSegmentCount: 7
+
+webrtc: yes
+webrtcAddress: :8889
+webrtcLocalUDPAddress: :8189
+webrtcIPsFromInterfaces: no  # advertise only VMS_WEBRTC_HOSTS (LAN / Tailscale IPs)
+webrtcICEServers2: []
+
+playback: no            # recordings are written encrypted by the recorder service
+
+pathDefaults:
+  record: no                 # never: MediaMTX would write plaintext; the recorder encrypts
+  recordPath: /recordings/%path/%Y-%m-%d_%H-%M-%S-%f
+  recordFormat: fmp4
+  recordPartDuration: 1s
+  recordSegmentDuration: 15m
+  recordDeleteAfter: 720h    # 30-day retention; size the disk (see README)
+
+paths: {}                    # populated dynamically from the camera table

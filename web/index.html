@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <title>Sentinel Attend</title>
+  <link rel="icon" href="/img/mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="/css/glass.css">
+</head>
+<body>
+  <!-- Icon sprite (stroke icons, 24 px grid). Referenced with <svg class="i"><use href="#i-name"/></svg>. -->
+  <svg width="0" height="0" class="sprite" aria-hidden="true">
+    <defs>
+      <symbol id="i-overview" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="9" rx="2"/><rect x="13.5" y="3" width="7.5" height="5" rx="2"/><rect x="13.5" y="11" width="7.5" height="10" rx="2"/><rect x="3" y="15" width="7.5" height="6" rx="2"/></symbol>
+      <symbol id="i-live" viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5 21.5 7v10l-6-3.5"/><circle cx="6.5" cy="10" r="1.2" class="fill"/></symbol>
+      <symbol id="i-playback" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3 4.5v4h4"/><path d="m10.5 9 4.5 3-4.5 3z"/></symbol>
+      <symbol id="i-events" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4.5h11l-2 4 2 4H5"/></symbol>
+      <symbol id="i-attendance" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="m9 15 2 2 4-4"/></symbol>
+      <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M15.5 5.2a3.4 3.4 0 0 1 0 6.6M18 14.8c2 .7 3.2 2.4 3.5 5.2"/></symbol>
+      <symbol id="i-kiosk" viewBox="0 0 24 24"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><circle cx="12" cy="10.5" r="2.8"/><path d="M7.5 17c.9-1.9 2.5-2.8 4.5-2.8s3.6.9 4.5 2.8"/></symbol>
+      <symbol id="i-privacy" viewBox="0 0 24 24"><path d="M12 2.8 4.5 5.6v5.6c0 4.8 3.1 8.4 7.5 10 4.4-1.6 7.5-5.2 7.5-10V5.6z"/><path d="M8.3 12c1-1.7 2.2-2.6 3.7-2.6s2.7.9 3.7 2.6c-1 1.7-2.2 2.6-3.7 2.6S9.3 13.7 8.3 12z"/></symbol>
+      <symbol id="i-antispoof" viewBox="0 0 24 24"><circle cx="12" cy="11" r="7.5"/><path d="M9.2 9.3h.01M14.8 9.3h.01"/><path d="M9 13.6c1.6 1.4 4.4 1.4 6 0"/><path d="m3 21 3.5-3.5M21 21l-3.5-3.5"/></symbol>
+      <symbol id="i-cameras" viewBox="0 0 24 24"><path d="M3 7.5 16.5 4l1.6 6-13.4 3.6z"/><path d="M18.1 8.4 21 7.6l.8 3-2.9.8"/><path d="M7.5 13 8.8 17H4.5v3.5"/></symbol>
+      <symbol id="i-rules" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9M4 12h5M13 12h7"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/><circle cx="11" cy="12" r="2"/></symbol>
+      <symbol id="i-watchlists" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2" class="fill"/><circle cx="4.5" cy="12" r="1.2" class="fill"/><circle cx="4.5" cy="18" r="1.2" class="fill"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.8"/><path d="M3 20.5c.7-3.8 3.5-6 7-6 1.4 0 2.7.3 3.8 1"/><path d="M18 14v6M15 17h6"/></symbol>
+      <symbol id="i-audit" viewBox="0 0 24 24"><path d="M6 3.5h9l4 4v13H6z"/><path d="M14.5 3.5V8H19M9 12h7M9 15.5h7M9 19h4"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+      <symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4.5H6.5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2H14"/><path d="M10.5 12h10M17 8.5l3.5 3.5-3.5 3.5"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8.5-8.5M16.5 6.5l2.5 2.5M14 9l2 2"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+      <symbol id="i-alarm" viewBox="0 0 24 24"><path d="M6 18v-6a6 6 0 0 1 12 0v6"/><path d="M4 18h16v2.5H4zM12 2.5V4M4.2 5.7l1 1M19.8 5.7l-1 1"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 7.5h3l1.6-2.5h6.8L17 7.5h3a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+      <symbol id="i-rewind" viewBox="0 0 24 24"><path d="M11 6 4 12l7 6zM20 6l-7 6 7 6z"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2.5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1-1"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12C4.6 7.8 7.8 5.5 12 5.5s7.4 2.3 9.5 6.5c-2.1 4.2-5.3 6.5-9.5 6.5S4.6 16.2 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Backdrop: a campus site plan seen at an angle, with camera fields of view. The glass refracts it. -->
+  <div class="scene" aria-hidden="true">
+    <div class="plane">
+      <svg class="plan" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="cone" cx="0" cy="0.5" r="1"><stop offset="0" stop-color="currentColor" stop-opacity=".55"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></radialGradient>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" fill="none" stroke="currentColor" stroke-opacity=".07"/></pattern>
+        </defs>
+        <rect width="1600" height="1000" fill="url(#grid)"/>
+        <g class="blocks" fill="none" stroke="currentColor" stroke-opacity=".22" stroke-width="2">
+          <rect x="180" y="160" width="360" height="190" rx="6"/><path d="M180 255h360M360 160v190"/>
+          <rect x="640" y="120" width="300" height="280" rx="6"/><path d="M640 220h300M790 120v280"/>
+          <rect x="1040" y="180" width="380" height="160" rx="6"/>
+          <rect x="220" y="520" width="260" height="300" rx="6"/><path d="M220 670h260"/>
+          <rect x="1080" y="520" width="320" height="260" rx="6"/><path d="M1240 520v260"/>
+          <path d="M80 450h1440M600 450v520M960 450v520" stroke-dasharray="14 12" stroke-opacity=".16"/>
+          <circle cx="780" cy="700" r="120" stroke-opacity=".14"/>
+        </g>
+        <g class="cones">
+          <g transform="translate(600 450)"><path class="sweep s1" d="M0 0 L260 -90 A275 275 0 0 1 260 90 Z" fill="url(#cone)"/><circle r="7" class="cam"/></g>
+          <g transform="translate(960 450) rotate(180)"><path class="sweep s2" d="M0 0 L240 -80 A253 253 0 0 1 240 80 Z" fill="url(#cone)"/><circle r="7" class="cam"/></g>
+          <g transform="translate(540 255) rotate(-90)"><path class="sweep s3" d="M0 0 L180 -70 A193 193 0 0 1 180 70 Z" fill="url(#cone)"/><circle r="6" class="cam"/></g>
+          <g transform="translate(1240 780) rotate(-120)"><path class="sweep s2" d="M0 0 L220 -80 A234 234 0 0 1 220 80 Z" fill="url(#cone)"/><circle r="6" class="cam"/></g>
+        </g>
+      </svg>
+    </div>
+    <div class="haze"></div>
+  </div>
+
+  <!-- ===================================================== sign in / first-run setup / invitation -->
+  <section id="login" class="auth hidden" aria-label="Sign in">
+    <div class="auth-intro">
+      <div class="brand big"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5 4.5 7v8.3c0 7.1 4.8 12.4 11.5 14.2 6.7-1.8 11.5-7.1 11.5-14.2V7z"/><path d="M10 15.5c1.6-2.8 3.6-4.2 6-4.2s4.4 1.4 6 4.2c-1.6 2.8-3.6 4.2-6 4.2s-4.4-1.4-6-4.2z" class="iris"/><circle cx="16" cy="15.5" r="1.9" class="pupil"/></svg>
+        <span>Sentinel <b>Attend</b></span></div>
+      <h1 class="auth-title">Attendance you can prove, footage nobody can misuse.</h1>
+      <p class="auth-lede">Live-face check-in, faces blurred by default, and every unblur or export approved by a super admin with MFA.</p>
+    </div>
+
+    <div class="slab" id="authSlab">
+      <!-- Sign in -->
+      <form id="loginForm" class="pane" data-pane="signin" autocomplete="on" novalidate>
+        <h2>Sign in</h2>
+        <p class="muted small">Restricted system. Every sign-in is logged.</p>
+        <div id="loginStep1">
+          <label>Username<input name="username" required autocomplete="username" maxlength="64" spellcheck="false"></label>
+          <label>Password<span class="pw"><input name="password" type="password" required autocomplete="current-password" maxlength="256"><button type="button" class="reveal" data-action="reveal" aria-label="Show password"><svg class="i"><use href="#i-eye"/></svg></button></span></label>
+          <label>Authenticator code<input name="totp" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" placeholder="6 digits (skip on your first sign-in)"></label>
+        </div>
+        <div id="mfaSetup" class="hidden mfa">
+          <p>Scan this code with an authenticator app (Microsoft Authenticator, Google Authenticator or Aegis), then type the 6-digit code it shows.</p>
+          <img id="mfaQr" alt="QR code for your authenticator app" class="qr">
+          <details><summary class="small">Can't scan? Enter the key by hand</summary><code id="mfaSecret" class="secret small"></code></details>
+          <label>Code from the app<input name="enrollCode" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
+        </div>
+        <p id="loginErr" class="err" role="alert"></p>
+        <button class="btn primary wide" type="submit" id="loginBtn">Sign in</button>
+        <p class="small muted center">New here? Use the invitation link your administrator sent you.</p>
+      </form>
+
+      <!-- First-run setup: only while no account exists -->
+      <div class="pane hidden" data-pane="setup">
+        <ol class="stepper" id="setupSteps">
+          <li data-step="1" class="on">Setup code</li><li data-step="2">Your account</li><li data-step="3">Authenticator</li><li data-step="4">Vault</li>
+        </ol>
+        <form data-form="setupAccount" id="setupAccount" novalidate>
+          <h2>Set up this system</h2>
+          <p class="small muted">No account exists yet. The person installing the system becomes the first super admin.
+            The one-time setup code is shown only in the terminal that started the server (or in <code>setup-code.txt</code> in the data folder).</p>
+          <label>One-time setup code<input name="setup_code" required autocomplete="off" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" class="code"></label>
+          <div class="grid2">
+            <label>Username<input name="username" required pattern="[A-Za-z0-9._-]{3,64}" autocomplete="username" spellcheck="false"></label>
+            <label>Mobile for security alerts<input name="phone" placeholder="+9198XXXXXXXX" autocomplete="tel"></label>
+          </div>
+          <label>Email for security alerts<input name="email" type="email" autocomplete="email"></label>
+          <label>Password<span class="pw"><input name="password" type="password" required autocomplete="new-password" data-meter="setupMeter"><button type="button" class="reveal" data-action="reveal" aria-label="Show password"><svg class="i"><use href="#i-eye"/></svg></button></span></label>
+          <div class="meter" id="setupMeter" aria-live="polite"><i></i><span></span></div>
+          <label>Repeat password<input name="password2" type="password" required autocomplete="new-password"></label>
+          <p class="err" role="alert"></p>
+          <button type="submit" class="btn primary wide">Create super admin</button>
+        </form>
+        <form data-form="setupMfa" class="hidden" novalidate>
+          <h2>Protect your account</h2>
+          <p class="small muted">Multi-factor sign-in is mandatory for every account. Scan the code, then type the 6 digits.</p>
+          <img alt="QR code for your authenticator app" class="qr">
+          <details><summary class="small">Can't scan? Enter the key by hand</summary><code class="secret small"></code></details>
+          <label>Code from the app<input name="totp" inputmode="numeric" maxlength="6" required autocomplete="one-time-code"></label>
+          <p class="err" role="alert"></p>
+          <button type="submit" class="btn primary wide">Verify and continue</button>
+        </form>
+        <form data-form="setupVault" class="hidden" novalidate>
+          <h2>Create the encryption vault</h2>
+          <p class="small muted">Unblurred footage and face crops are sealed to this vault. Only a super admin with the passphrase <em>and</em> an authenticator code can open them.
+            Until it exists, raw footage is discarded and nothing can ever be unblurred.</p>
+          <label>Vault passphrase (16+ characters; four or five random words work well)<input name="passphrase" type="password" required minlength="16" autocomplete="new-password"></label>
+          <label>Repeat passphrase<input name="passphrase2" type="password" required minlength="16" autocomplete="new-password"></label>
+          <label>Next authenticator code (wait for the code to change)<input name="totp" inputmode="numeric" maxlength="6" required autocomplete="one-time-code"></label>
+          <p class="err" role="alert"></p>
+          <div class="row"><button type="submit" class="btn primary">Create vault</button><button type="button" class="btn ghost" data-action="setup-skip">Do this later</button></div>
+        </form>
+        <div data-done class="hidden">
+          <h2>Recovery code</h2>
+          <p class="small">Shown once. Print it and lock it away (for example in the principal's safe). It is the only way back in if the passphrase is lost.</p>
+          <div class="secret big" id="setupRecovery"></div>
+          <button class="btn primary wide" data-action="setup-finish">I have stored it offline — open the console</button>
+        </div>
+      </div>
+
+      <!-- Invitation / password reset link -->
+      <div class="pane hidden" data-pane="register">
+        <form data-form="register" novalidate>
+          <h2 id="regTitle">Create your account</h2>
+          <p class="small muted" id="regLede"></p>
+          <label data-field="username">Username<input name="username" pattern="[A-Za-z0-9._-]{3,64}" autocomplete="username" spellcheck="false"></label>
+          <div class="grid2" data-field="contact">
+            <label>Mobile for alerts (optional)<input name="phone" placeholder="+9198XXXXXXXX" autocomplete="tel"></label>
+            <label>Email (optional)<input name="email" type="email" autocomplete="email"></label>
+          </div>
+          <label>New password<span class="pw"><input name="password" type="password" required autocomplete="new-password" data-meter="regMeter"><button type="button" class="reveal" data-action="reveal" aria-label="Show password"><svg class="i"><use href="#i-eye"/></svg></button></span></label>
+          <div class="meter" id="regMeter" aria-live="polite"><i></i><span></span></div>
+          <label>Repeat password<input name="password2" type="password" required autocomplete="new-password"></label>
+          <p class="err" role="alert"></p>
+          <button type="submit" class="btn primary wide">Continue</button>
+        </form>
+        <form data-form="registerMfa" class="hidden" novalidate>
+          <h2>Protect your account</h2>
+          <p class="small muted">Scan the code with an authenticator app, then type the 6 digits it shows.</p>
+          <img alt="QR code for your authenticator app" class="qr">
+          <details><summary class="small">Can't scan? Enter the key by hand</summary><code class="secret small"></code></details>
+          <label>Code from the app<input name="totp" inputmode="numeric" maxlength="6" required autocomplete="one-time-code"></label>
+          <p class="err" role="alert"></p>
+          <button type="submit" class="btn primary wide">Verify and sign in</button>
+        </form>
+        <div data-invalid class="hidden"><h2>Link not valid</h2><p class="muted">This link was already used, revoked or has expired. Ask your administrator for a new one.</p>
+          <a class="btn wide" href="#/">Go to sign in</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== application shell -->
+  <div id="app" class="shell hidden">
+    <aside class="glass side" aria-label="Main navigation">
+      <div class="brand"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5 4.5 7v8.3c0 7.1 4.8 12.4 11.5 14.2 6.7-1.8 11.5-7.1 11.5-14.2V7z"/><path d="M10 15.5c1.6-2.8 3.6-4.2 6-4.2s4.4 1.4 6 4.2c-1.6 2.8-3.6 4.2-6 4.2s-4.4-1.4-6-4.2z" class="iris"/><circle cx="16" cy="15.5" r="1.9" class="pupil"/></svg>
+        <span>Sentinel <b>Attend</b></span></div>
+      <nav id="nav">
+        <a href="#/dashboard" data-view="dashboard"><svg class="i"><use href="#i-overview"/></svg><span>Overview</span></a>
+        <p class="nav-group" data-role="operator">Attendance</p>
+        <a href="#/attendance" data-view="attendance" data-role="operator"><svg class="i"><use href="#i-attendance"/></svg><span>Attendance</span></a>
+        <a href="#/kiosk" data-view="kiosk" data-role="operator"><svg class="i"><use href="#i-kiosk"/></svg><span>Kiosk</span></a>
+        <a href="#/people" data-view="people" data-role="operator"><svg class="i"><use href="#i-people"/></svg><span>People</span></a>
+        <p class="nav-group">Watch</p>
+        <a href="#/live" data-view="live"><svg class="i"><use href="#i-live"/></svg><span>Live wall</span></a>
+        <a href="#/playback" data-view="playback"><svg class="i"><use href="#i-playback"/></svg><span>Playback</span></a>
+        <a href="#/events" data-view="events"><svg class="i"><use href="#i-events"/></svg><span>Events</span><em id="navBadge" class="badge hidden"></em></a>
+        <p class="nav-group" data-role="operator">Protect</p>
+        <a href="#/privacy" data-view="privacy" data-role="operator"><svg class="i"><use href="#i-privacy"/></svg><span>Privacy</span></a>
+        <a href="#/antispoof" data-view="antispoof" data-role="operator"><svg class="i"><use href="#i-antispoof"/></svg><span>Anti-spoof</span></a>
+        <p class="nav-group" data-role="operator">Configure</p>
+        <a href="#/cameras" data-view="cameras" data-role="admin"><svg class="i"><use href="#i-cameras"/></svg><span>Cameras</span></a>
+        <a href="#/rules" data-view="rules" data-role="operator"><svg class="i"><use href="#i-rules"/></svg><span>Rules</span></a>
+        <a href="#/watchlists" data-view="watchlists" data-role="operator"><svg class="i"><use href="#i-watchlists"/></svg><span>Watchlists</span></a>
+        <a href="#/users" data-view="users" data-role="admin"><svg class="i"><use href="#i-users"/></svg><span>Users</span></a>
+        <a href="#/audit" data-view="audit" data-role="admin"><svg class="i"><use href="#i-audit"/></svg><span>Audit log</span></a>
+      </nav>
+      <div class="side-foot">
+        <span id="wsState" class="pill off" title="Real-time connection">offline</span>
+        <button class="btn ghost small" data-action="mute" id="muteBtn" title="Alarm sound">Sound on</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="glass top">
+        <button class="btn ghost icon only-mobile" data-action="nav-toggle" aria-label="Open menu"><svg class="i"><use href="#i-menu"/></svg></button>
+        <h1 id="viewTitle">Overview</h1>
+        <button class="search" data-action="palette" aria-label="Go to (Ctrl K)"><svg class="i"><use href="#i-search"/></svg><span>Go to…</span><kbd>Ctrl K</kbd></button>
+        <div class="top-right">
+          <span id="clock" class="mono clock"></span>
+          <button class="btn ghost icon bell" data-action="bell" data-role="admin" aria-label="Security alerts" title="Security alerts"><svg class="i"><use href="#i-bell"/></svg><em id="bellCount" class="badge hidden"></em></button>
+          <button class="btn ghost icon" data-action="theme" aria-label="Switch light or dark theme" title="Theme"><svg class="i"><use href="#i-sun"/></svg></button>
+          <button class="btn ghost icon" data-action="password" aria-label="Change password" title="Change password"><svg class="i"><use href="#i-key"/></svg></button>
+          <span id="whoami" class="who"></span>
+          <button class="btn ghost icon" data-action="logout" aria-label="Sign out" title="Sign out"><svg class="i"><use href="#i-logout"/></svg></button>
+        </div>
+      </header>
+      <div id="view" class="view" tabindex="-1"></div>
+    </main>
+
+    <aside id="alertRail" class="glass rail" aria-label="Live alerts">
+      <div class="rail-head"><h3>Live alerts</h3><button class="btn ghost small" data-action="ack-all" data-role="operator">Acknowledge all</button></div>
+      <div id="alertList" class="alert-list"><p class="muted small">Quiet so far. New alerts appear here and on the camera tile.</p></div>
+    </aside>
+  </div>
+
+  <div id="palette" class="palette hidden" role="dialog" aria-modal="true" aria-label="Go to">
+    <div class="glass palette-card"><label class="palette-in"><svg class="i"><use href="#i-search"/></svg><input id="paletteInput" placeholder="Go to a page or action" autocomplete="off" aria-label="Go to"></label>
+      <ul id="paletteList" role="listbox"></ul></div>
+  </div>
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true"><div class="glass modal-card" id="modalCard"></div></div>
+  <div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.13/hls.min.js"></script>
+  <script src="/js/fx.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/campus.js"></script>
+</body>
+</html>

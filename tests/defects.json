@@ -1,0 +1,407 @@
+{
+ "defects": [
+  {
+   "id": "D-27",
+   "severity": "Critical",
+   "area": "Authentication (MFA enrolment)",
+   "found_by": "GitHub Actions: first execution of the API suite",
+   "status": "Fixed",
+   "issue": "MFA enrolment always answered 'Invalid code', so no new account (including the first super admin) could finish registering or sign in.",
+   "root_cause": "The replay-safe TOTP check introduced for D-07 also required MFA to be already enabled, which is never true during enrolment.",
+   "fix": "Enrolment verifies the code against the pending secret explicitly; every other check still requires enabled MFA.",
+   "verified_by": "FN-01 and every API test that registers a user"
+  },
+  {
+   "id": "D-01",
+   "severity": "High",
+   "area": "AI worker",
+   "found_by": "Unit test (detector post-processing)",
+   "status": "Fixed",
+   "issue": "Every object-detection event post failed.",
+   "root_cause": "Detector returned numpy float32 boxes, which json.dumps cannot serialise.",
+   "fix": "Cast box coordinates to Python floats in detector.postprocess.",
+   "verified_by": "MT/PL suites; manual worker run"
+  },
+  {
+   "id": "D-02",
+   "severity": "Low",
+   "area": "Console",
+   "found_by": "Headless browser test",
+   "status": "Fixed",
+   "issue": "Unhandled promise rejection ('ICE timeout') when WebRTC negotiation failed early.",
+   "root_cause": "The ICE-connected promise was created but never awaited on the early-failure path.",
+   "fix": "Attach a no-op catch before signalling; fall back to HLS.",
+   "verified_by": "UI-01"
+  },
+  {
+   "id": "D-03",
+   "severity": "Medium",
+   "area": "CCTV attendance",
+   "found_by": "End-to-end pipeline test",
+   "status": "Fixed",
+   "issue": "Genuine people could be missed (cosine 0.32 < 0.42).",
+   "root_cause": "Three frame embeddings were averaged; one poor frame dragged the mean below threshold.",
+   "fix": "Send samples individually; the API requires >= 2 samples agreeing on the same person.",
+   "verified_by": "FN-09"
+  },
+  {
+   "id": "D-04",
+   "severity": "High",
+   "area": "Liveness",
+   "found_by": "Logic test (photo-swap attack)",
+   "status": "Fixed",
+   "issue": "Swapping between photos of different poses was not rejected.",
+   "root_cause": "Intermediate-pose evidence was computed but never enforced.",
+   "fix": "Require intermediate poses before each challenge step ('movement too abrupt').",
+   "verified_by": "LV-05, LV-06"
+  },
+  {
+   "id": "D-05",
+   "severity": "Medium",
+   "area": "Liveness",
+   "found_by": "Logic test (genuine user, 'up' first)",
+   "status": "Fixed",
+   "issue": "Genuine users asked to tilt up were falsely rejected.",
+   "root_cause": "Neutral pitch baseline was the median over all frames, including tilted ones.",
+   "fix": "Baseline from the opening 'look straight' frames only.",
+   "verified_by": "LV-02, LV-03"
+  },
+  {
+   "id": "D-06",
+   "severity": "High",
+   "area": "Console",
+   "found_by": "Headless browser test",
+   "status": "Fixed",
+   "issue": "Console rendered a blank page.",
+   "root_cause": "app.js referenced a view defined in campus.js (loaded later), aborting script execution.",
+   "fix": "Register campus views from campus.js; boot after DOMContentLoaded.",
+   "verified_by": "UI-01"
+  },
+  {
+   "id": "D-07",
+   "severity": "High",
+   "area": "Authentication (MFA)",
+   "found_by": "Security code review + HD-03",
+   "status": "Fixed",
+   "issue": "An older, observed MFA code could be replayed after a newer code had been used (within its 90 s validity).",
+   "root_cause": "Replay check compared only against the last code used, not the time step.",
+   "fix": "RFC 6238 implementation that accepts a code only if its time step is strictly later than the last accepted step.",
+   "verified_by": "HD-02, HD-03, CY-08, AB-06"
+  },
+  {
+   "id": "D-08",
+   "severity": "Medium",
+   "area": "Attendance export",
+   "found_by": "Security code review + HD-09",
+   "status": "Fixed",
+   "issue": "CSV/Excel formula injection: a name like =HYPERLINK(...) executes when the export is opened.",
+   "root_cause": "User-controlled text written to CSV unescaped (CWE-1236).",
+   "fix": "Prefix cells beginning with = + - @ TAB CR LF with an apostrophe.",
+   "verified_by": "HD-09, FN-12"
+  },
+  {
+   "id": "D-09",
+   "severity": "Medium",
+   "area": "Authentication (MFA)",
+   "found_by": "HD-05 (fuzz input)",
+   "status": "Fixed",
+   "issue": "Unicode digits (e.g. full-width '\uff11\uff12\uff13\uff14\uff15\uff16') in an MFA field caused a server error.",
+   "root_cause": "str.isdigit() accepts Unicode digits; hmac.compare_digest raises TypeError on non-ASCII.",
+   "fix": "Require ASCII digits before comparison.",
+   "verified_by": "HD-05, CY-20"
+  },
+  {
+   "id": "D-10",
+   "severity": "Medium",
+   "area": "Anti-spoof",
+   "found_by": "AS-17",
+   "status": "Fixed",
+   "issue": "Backlit faces were scored instead of being sent back for better lighting.",
+   "root_cause": "Brightness was measured over the 1.5x crop, which includes the bright background.",
+   "fix": "Measure the detector face box against its surroundings.",
+   "verified_by": "AS-17, AS-13 (no new false rejects)"
+  },
+  {
+   "id": "D-11",
+   "severity": "High",
+   "area": "Privacy blur",
+   "found_by": "FE-07 / FE-08, then measurement",
+   "status": "Fixed",
+   "issue": "Blurred faces were still detectable (7 of 305) and one remained matchable by the recogniser (cosine 0.44 >= 0.42).",
+   "root_cause": "Pixelation grid scaled up to 7 cells across, preserving coarse facial layout on larger faces.",
+   "fix": "Fixed 4-cell grid plus stronger smoothing: 0 of 305 re-detected; identity similarity <= 0.34.",
+   "verified_by": "FE-03, FE-04, FE-07, FE-08, PL-01, PL-04"
+  },
+  {
+   "id": "D-12",
+   "severity": "High",
+   "area": "Uploads (kiosk, enrolment, anti-spoof lab)",
+   "found_by": "Security code review, proven with a crafted JPEG",
+   "status": "Fixed",
+   "issue": "Decompression bomb: a 1.2 MB JPEG made the server allocate 243 MB (x90 frames per kiosk request).",
+   "root_cause": "Only file size was limited; OpenCV decoded images of any declared dimension.",
+   "fix": "Read dimensions from the header (Pillow) and refuse oversized images before decoding.",
+   "verified_by": "HD-11, AB-12"
+  },
+  {
+   "id": "D-13",
+   "severity": "Medium",
+   "area": "Sessions",
+   "found_by": "Security code review",
+   "status": "Fixed",
+   "issue": "Logout did not revoke the session token; a copied cookie stayed valid for up to 30 min.",
+   "root_cause": "Stateless JWT with cookie deletion only.",
+   "fix": "Logout bumps the user's session version (server-side revocation of all that user's sessions).",
+   "verified_by": "CY-21"
+  },
+  {
+   "id": "D-14",
+   "severity": "Medium",
+   "area": "Step-up MFA",
+   "found_by": "Test design review",
+   "status": "Fixed",
+   "issue": "A super admin approving more than 5 items in 15 minutes was locked out.",
+   "root_cause": "The rate limiter counted successful MFA checks as well as failures.",
+   "fix": "Count failures only (5 per 15 min).",
+   "verified_by": "AB-13, CY-22"
+  },
+  {
+   "id": "D-15",
+   "severity": "Medium",
+   "area": "Liveness",
+   "found_by": "Threat review (replay of recorded check-ins)",
+   "status": "Fixed",
+   "issue": "Only 6 possible challenge sequences: a pre-recorded attempt matched 1 time in 6.",
+   "root_cause": "Two distinct moves chosen from three.",
+   "fix": "Three moves, no immediate repeats: 12 sequences (and texture anti-spoofing on every frame).",
+   "verified_by": "LV-01, LV-02, FN-19"
+  },
+  {
+   "id": "D-16",
+   "severity": "High",
+   "area": "Anti-spoof",
+   "found_by": "Comparison with the reference implementation",
+   "status": "Fixed",
+   "issue": "The earlier anti-spoof hook would have scored faces incorrectly.",
+   "root_cause": "2.7x crop, plain stretch to 128 px and softmax, unlike the model's training pipeline (1.5x square reflect-padded crop, letterbox, logit-difference threshold).",
+   "fix": "Faithful port of the reference runtime (antispoof.py), verified against the reference test-suite assertions.",
+   "verified_by": "AS-01..AS-12"
+  },
+  {
+   "id": "D-17",
+   "severity": "Critical",
+   "area": "Access control",
+   "found_by": "Security code review",
+   "status": "Fixed",
+   "issue": "An admin could reset a super admin's password and MFA and take over the approval role.",
+   "root_cause": "User management did not distinguish super admin targets.",
+   "fix": "Only super admins can create, modify, reset or delete super admin accounts; the last super admin is protected.",
+   "verified_by": "AB-07, AB-08"
+  },
+  {
+   "id": "D-18",
+   "severity": "High",
+   "area": "Playback / export",
+   "found_by": "Reported by user",
+   "status": "Fixed",
+   "issue": "Playback showed 'no supported format' and export saved an error page.",
+   "root_cause": "Demo cameras were created with recording off; the UI requested non-existent footage.",
+   "fix": "Encrypted recorder with segment index; the UI only offers recorded ranges and reports errors in plain text.",
+   "verified_by": "FN-14, PL-04, UI-09"
+  },
+  {
+   "id": "D-19",
+   "severity": "High",
+   "area": "Launcher",
+   "found_by": "Reported by user (path in screenshot)",
+   "status": "Fixed",
+   "issue": "Footage, database and secrets were stored inside a OneDrive-synced folder.",
+   "root_cause": "Data folder lived inside the project folder.",
+   "fix": "Data moved to %USERPROFILE%\\SentinelVMS with automatic migration and secret rotation.",
+   "verified_by": "Launcher migration test"
+  },
+  {
+   "id": "D-20",
+   "severity": "High",
+   "area": "Launcher",
+   "found_by": "Reported by user",
+   "status": "Fixed",
+   "issue": "Install failed on Windows ('failed to locate pyvenv.cfg').",
+   "root_cause": "Microsoft Store Python redirects AppData writes into its sandbox.",
+   "fix": "Prefer python.org interpreters; data outside AppData; self-healing virtualenv.",
+   "verified_by": "Launcher tests (Windows path simulation)"
+  },
+  {
+   "id": "D-21",
+   "severity": "High",
+   "area": "Accounts (first run)",
+   "found_by": "Pre-publication secret review",
+   "status": "Fixed",
+   "issue": "Every install started with a predictable 'admin' account whose initial password was printed to the console, written to FIRST-LOGIN.txt and logged by Docker.",
+   "root_cause": "Bootstrap created a default super admin instead of letting the installer register.",
+   "fix": "No built-in account: a one-time 80-bit setup code (0600 file, local terminal only, rotated after 10 failures) lets the first super admin register and enrol MFA; setup closes permanently afterwards.",
+   "verified_by": "FN-01, AB-18, CY-25, HD-15, UI-14, UI-15"
+  },
+  {
+   "id": "D-22",
+   "severity": "High",
+   "area": "Accounts (user management)",
+   "found_by": "Design review",
+   "status": "Fixed",
+   "issue": "Admins created users and reset passwords by reading out a temporary password, so the admin knew another person's credentials (no non-repudiation).",
+   "root_cause": "Temporary-password workflow.",
+   "fix": "Single-use invitation and reset links (256-bit, stored as SHA-256, 24-168 h); the person chooses their own password; the old password stops working at reset.",
+   "verified_by": "FN-22, FN-23, CY-24, AB-19, UI-16, UI-17, UI-18"
+  },
+  {
+   "id": "D-23",
+   "severity": "High",
+   "area": "Access control",
+   "found_by": "Design review",
+   "status": "Fixed",
+   "issue": "An admin could promote any account to admin, or reset and disable other admins.",
+   "root_cause": "Only super admin targets were protected.",
+   "fix": "Only a super admin can invite, promote, reset, disable or delete admins and super admins; anyone may edit their own alert contacts.",
+   "verified_by": "AB-07, AB-17, UI-18"
+  },
+  {
+   "id": "D-24",
+   "severity": "Medium",
+   "area": "Authentication",
+   "found_by": "Design review",
+   "status": "Fixed",
+   "issue": "Password policy was length-only (and absent for the bootstrap password).",
+   "root_cause": "No shared policy function.",
+   "fix": "One policy for setup, registration, reset and change: 12+ characters, not containing the username, not common, not repetitive, 3 character classes below 16 characters.",
+   "verified_by": "HD-12, CY-23, FN-01"
+  },
+  {
+   "id": "D-25",
+   "severity": "Low",
+   "area": "Console accessibility",
+   "found_by": "UI-20",
+   "status": "Fixed",
+   "issue": "The live wall's site filter had no accessible name for screen readers.",
+   "root_cause": "Select rendered without a label.",
+   "fix": "aria-label added; UI-20 now checks every visible control on the main screens.",
+   "verified_by": "UI-20"
+  },
+  {
+   "id": "D-26",
+   "severity": "Medium",
+   "area": "Launcher",
+   "found_by": "GitHub Actions (clean machine)",
+   "status": "Fixed",
+   "issue": "On a machine that had never run the app, `run.py --selftest` crashed while saving the face models.",
+   "root_cause": "The models folder was only created by the normal start-up path, not by the model download itself.",
+   "fix": "The download creates its own folder.",
+   "verified_by": "GitHub Actions run on a clean runner"
+  }
+ ],
+ "risks": [
+  {
+   "id": "R-01",
+   "rating": "Medium",
+   "title": "Texture model misses digitally simulated prints / recaptures",
+   "detail": "AS-15 (expected failure): the MiniFAS model, trained on physical attacks, passed simulated halftone prints and low-resolution recaptures as real. Mitigation: kiosk check-ins also need the random head-movement challenge, which planar media cannot perform (LV-04, LV-05, LV-13). CCTV sightings need natural movement too, or go to review."
+  },
+  {
+   "id": "R-02",
+   "rating": "High (out of scope for RGB)",
+   "title": "3D silicone masks, live deepfakes via virtual camera, and kiosk-account frame injection",
+   "detail": "Not addressed by RGB liveness. Mitigations: supervised kiosks, kiosk accounts only on managed devices, IR/depth cameras and an ISO/IEC 30107-3 certified PAD SDK for high-stakes use."
+  },
+  {
+   "id": "R-03",
+   "rating": "Low",
+   "title": "Camera IDs can be enumerated by the media server",
+   "detail": "MediaMTX answers 404 for unknown paths and 401 for existing ones before authorisation. Reveals only which camera numbers exist; the service is bound to localhost/VPN."
+  },
+  {
+   "id": "R-04",
+   "rating": "Medium",
+   "title": "View-only cannot stop filming the screen",
+   "detail": "Unblurred results are watermarked with the request number and viewer, expire after 15 minutes, and every view is alerted."
+  },
+  {
+   "id": "R-05",
+   "rating": "Low",
+   "title": "Vault key in Python memory during a render",
+   "detail": "CPython cannot guarantee memory wiping; run the API on a trusted, patched host."
+  },
+  {
+   "id": "R-06",
+   "rating": "Low",
+   "title": "Logout signs the user out on all devices",
+   "detail": "Trade-off of the D-13 fix (server-side revocation via session version)."
+  },
+  {
+   "id": "R-07",
+   "rating": "Low",
+   "title": "Setup code readable by anyone with shell access to the server",
+   "detail": "Until the first super admin registers, the setup code is in a 0600 file on the server. Anyone with that access already controls the host. Complete setup immediately after installation."
+  }
+ ],
+ "test_bugs": [
+  {
+   "id": "T-01",
+   "test": "HD-08",
+   "issue": "Wrong base32 padding in the test itself.",
+   "fix": "Pad to a multiple of 8."
+  },
+  {
+   "id": "T-02",
+   "test": "AS-17",
+   "issue": "First backlight case used a well-lit face on a white wall ('real' was correct).",
+   "fix": "Synthetic dark face against a bright background."
+  },
+  {
+   "id": "T-03",
+   "test": "PL-02",
+   "issue": "Cross-camera check used an unconfigured path (404 before auth).",
+   "fix": "Configure a second camera path."
+  },
+  {
+   "id": "T-04",
+   "test": "UI-09 / UI-10",
+   "issue": "Selector matched the hidden login form's MFA field.",
+   "fix": "Scope selectors to the step-up dialog."
+  },
+  {
+   "id": "T-05",
+   "test": "UI-12",
+   "issue": "Role switched without reloading the single-page app.",
+   "fix": "Reload after switching role."
+  },
+  {
+   "id": "T-06",
+   "test": "CY-17",
+   "issue": "Searched ciphertext for bytes '0.' (random match ~2%).",
+   "fix": "Deterministic check: ciphertext does not parse."
+  },
+  {
+   "id": "T-07",
+   "test": "FN-14 / CY-22",
+   "issue": "Fake video bytes could not be exported (transcode).",
+   "fix": "Generate a real encrypted segment with ffmpeg."
+  },
+  {
+   "id": "T-08",
+   "test": "UI-14",
+   "issue": "Clicked the first button in the form, which was the show-password toggle, so the form never submitted.",
+   "fix": "Submit buttons are explicitly type=submit; the test targets them."
+  },
+  {
+   "id": "T-09",
+   "test": "API fixture (FN/AB/CY)",
+   "issue": "The test super admin's password contained its username, so the new password policy correctly refused it and 60 dependent tests could not start.",
+   "fix": "Fixture password no longer contains the username."
+  },
+  {
+   "id": "T-10",
+   "test": "CY-22",
+   "issue": "The wrong-code attempts used a 4-character reason, so they were refused as invalid input (422) before the code was checked.",
+   "fix": "Valid reason; the attempts now fail on the code (401) as intended."
+  }
+ ]
+}
