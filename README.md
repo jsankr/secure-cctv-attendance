@@ -103,7 +103,7 @@ sequenceDiagram
     A->>A: verify code hash, password policy, create super admin, delete code
     A-->>B: TOTP secret + QR (no session yet)
     B->>A: POST /api/auth/mfa/enroll (6-digit code)
-    A-->>B: session; setup is closed permanently
+    A-->>B: session, and setup closes permanently
 ```
 
 Why a code at all: a "first visitor becomes admin" screen lets anyone who reaches the page first take over the
@@ -271,15 +271,26 @@ python run.py --selftest --test-faces <folder of consented photos>
 
 ### Test status
 
-| Suite | Result | Where it ran |
-|---|---|---|
-| HD, CR, AS, FE, LV, MT, PL | 117 passed, 4 expected failures (simulated print/recapture not caught by the texture model alone; the head-movement challenge blocks them) | Linux build environment |
-| UI | 27 passed | Linux, headless Chromium |
-| FN, AB, CY (70 API tests) | Executed by GitHub Actions (`.github/workflows/tests.yml`) on every push; see the run's `test-report` artifact | GitHub Actions, Ubuntu 24.04 |
+Latest run: GitHub Actions on a clean Ubuntu 24.04 runner, every suite, on the commit merged to `main`.
 
-Every push runs the secret scan, a JavaScript syntax check and all suites in GitHub Actions; the HTML report is
-attached to each run. `main` only receives commits whose run is green. Defects found and fixed are listed in
-`tests/defects.json` and in the generated HTML report.
+| Suite | Tests | Passed | Failed | Skipped |
+|---|---:|---:|---:|---:|
+| HD, CR (security helpers, encryption) | 34 | 34 | 0 | 0 |
+| AS, FE, LV, MT (anti-spoof, recognition, liveness, media) | 76 | 56 | 0 | 20 |
+| PL (end to end with real MediaMTX) | 11 | 0 | 0 | 11 |
+| FN, AB, CY (API functional, abuse, cyber) | 72 | 72 | 0 | 0 |
+| UI (console in headless Chromium) | 27 | 27 | 0 | 0 |
+| **Total** | **220** | **189** | **0** | **31** |
+
+**Pass rate of executed tests: 189 / 189 (100%).** The 31 skipped tests need photos of consenting people
+(`--test-faces`), which are deliberately not stored in this repository. They were executed in the build environment
+with such photos: all passed, except 4 expected failures that document a known limit (the texture model alone
+misses simulated prints and low-resolution recaptures; the head-movement challenge blocks them). Run them on your
+machine with `python run.py --selftest --test-faces <folder>`.
+
+Every push runs the secret scan, a JavaScript syntax check and all suites; the HTML report is attached to each
+run as the `test-report` artifact. 27 product defects found by these tests are fixed and listed, with root cause
+and fix, in `tests/defects.json`.
 
 ## Repository layout
 
