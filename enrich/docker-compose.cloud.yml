@@ -1,0 +1,17 @@
+# Deploy on a cloud VM (CPU is fine for crop-level workloads). Terminate TLS in front of it
+# and restrict the security group to your sites' egress IPs.
+services:
+  enrich:
+    build: .
+    restart: unless-stopped
+    environment:
+      ENRICH_TOKEN: ${ENRICH_TOKEN:?set ENRICH_TOKEN}
+      REID_MODEL_PATH: ${REID_MODEL_PATH:-}
+    ports: ["127.0.0.1:9000:9000"]
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    command: caddy reverse-proxy --from ${ENRICH_DOMAIN:?set ENRICH_DOMAIN} --to enrich:9000
+    ports: ["443:443", "80:80"]
+    volumes: [caddydata:/data]
+volumes: { caddydata: {} }

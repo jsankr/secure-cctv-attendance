@@ -1,0 +1,1342 @@
+{
+ "meta": {
+  "started": "2026-11-09 16:54:31",
+  "python": "3.13.18",
+  "platform": "Linux 6.18.44-fc-v310 x86_64",
+  "host": "vm"
+ },
+ "results": [
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_01_rfc6238_vectors",
+   "id": "HD-01",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "TOTP matches RFC 6238 SHA-1 test vectors (last 6 digits).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_02_current_code_accepted_once",
+   "id": "HD-02",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "A valid code is accepted once; the identical code is rejected afterwards (replay).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_03_older_code_rejected_after_newer",
+   "id": "HD-03",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Defect D-07 regression: an observed OLDER code cannot be replayed after a newer one was used.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_04_clock_drift_window",
+   "id": "HD-04",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Codes one step either side are accepted (drift); two steps away are rejected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_05_malformed_codes",
+   "id": "HD-05",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Defect D-09 regression: malformed codes (incl. Unicode digits) are rejected without exceptions.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_06_corrupt_marker_tolerated",
+   "id": "HD-06",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "A corrupt stored marker does not crash verification.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_07_provisioning_uri",
+   "id": "HD-07",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Provisioning URI follows the Key URI format apps expect.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_08_secret_entropy",
+   "id": "HD-08",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.002,
+   "title": "Generated TOTP secrets are 160-bit and unique.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_09_csv_formula_injection",
+   "id": "HD-09",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Defect D-08 regression: cells starting with = + - @ TAB CR LF are neutralised.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_10_stream_access_policy",
+   "id": "HD-10",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "MediaMTX hook: viewer tokens read only their own blurred path; never raw, publish, playback or API.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_11_decompression_bomb_rejected",
+   "id": "HD-11",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 1.222,
+   "title": "Defect D-12 regression: images declaring huge dimensions are refused before pixel decoding.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_12_password_policy",
+   "id": "HD-12",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Account passwords: 12+ chars, not common, not containing the username, not repetitive; long passphrases OK.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_13_setup_code_and_token_hash",
+   "id": "HD-13",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.006,
+   "title": "Setup codes carry 80 random bits, are normalised for typing, and are compared by hash only.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_14_repository_has_no_secrets",
+   "id": "HD-14",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.189,
+   "title": "Pre-push secret scan: no keys, tokens, passwords, databases or .env files in the repository.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_hardening.py::test_HD_15_no_default_credentials_in_code",
+   "id": "HD-15",
+   "prefix": "HD",
+   "outcome": "passed",
+   "duration_s": 0.015,
+   "title": "No built-in username/password pair or bootstrap password remains in the code base.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_01_media_roundtrip_chunk_boundaries",
+   "id": "CR-01",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.025,
+   "title": "AES-256-GCM media encryption round-trips at every chunk-boundary size.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_02_sealed_roundtrip",
+   "id": "CR-02",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.009,
+   "title": "Raw footage sealed to the vault public key opens only with the unlocked private key.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_03_recovery_code",
+   "id": "CR-03",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "The offline recovery code unlocks the vault (case/space/dash insensitive).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_04_wrong_passphrase",
+   "id": "CR-04",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.554,
+   "title": "Wrong passphrase is rejected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_05_sealed_needs_vault_key",
+   "id": "CR-05",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.004,
+   "title": "A sealed file cannot be opened with the server's media key.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_06_other_vault_rejected",
+   "id": "CR-06",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 1.194,
+   "title": "A different vault's key cannot open the file.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_07_tamper_detected[chunk]",
+   "id": "CR-07",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.008,
+   "title": "Bit flips in a chunk, the header or a length prefix are detected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_07_tamper_detected[header]",
+   "id": "CR-07",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.008,
+   "title": "Bit flips in a chunk, the header or a length prefix are detected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_07_tamper_detected[length]",
+   "id": "CR-07",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.007,
+   "title": "Bit flips in a chunk, the header or a length prefix are detected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_08_truncation_detected",
+   "id": "CR-08",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.008,
+   "title": "Removing the final chunk (truncation attack) is detected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_09_reorder_detected",
+   "id": "CR-09",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.008,
+   "title": "Swapping chunks is detected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_10_splice_detected",
+   "id": "CR-10",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.015,
+   "title": "Chunks spliced from another file under the same key are detected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_11_trailing_data_detected",
+   "id": "CR-11",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Data appended after the final chunk is rejected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_12_malformed_header",
+   "id": "CR-12",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Garbage, empty input and oversize header lengths are rejected cleanly.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_13_weak_passphrases_refused",
+   "id": "CR-13",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Short or repetitive vault passphrases are refused.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_14_passphrase_rotation",
+   "id": "CR-14",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 1.637,
+   "title": "Changing the passphrase keeps old footage readable and retires the old passphrase.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_15_vault_record_tamper",
+   "id": "CR-15",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 1.145,
+   "title": "Swapping the stored public key in the vault record is detected at unlock.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_16_nonce_uniqueness",
+   "id": "CR-16",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.001,
+   "title": "Every encryption uses a fresh data key and nonce prefix (no ciphertext repeats).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_crypto.py::test_CR_17_streaming_encryptor",
+   "id": "CR-17",
+   "prefix": "CR",
+   "outcome": "passed",
+   "duration_s": 0.012,
+   "title": "Incremental writes in odd sizes decrypt to the same stream.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_01_preprocess_contract",
+   "id": "AS-01",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.004,
+   "title": "preprocess -> (3,128,128) float32 in [0,1] for square and non-square inputs (reference tests).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_02_preprocess_batch",
+   "id": "AS-02",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Batch shape (N,3,128,128); empty batch raises ValueError (reference tests).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_03_crop_geometry",
+   "id": "AS-03",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Square 1.5x crop; interior crop equals a plain slice; invalid bbox raises (reference tests).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_04_crop_reflect_padding",
+   "id": "AS-04",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Crops beyond the image edge are padded with BORDER_REFLECT_101 (reference data-prep choice).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_05_letterbox_is_symmetric",
+   "id": "AS-05",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Non-square crops are letterboxed centrally, not stretched (reference preprocess).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_06_logits_decision",
+   "id": "AS-06",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "process_with_logits: real/spoof by logit difference vs logit threshold; exact key set.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_07_threshold_conversion",
+   "id": "AS-07",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Probability thresholds map to logits as in the reference (0.5 -> 0, 0.8 -> 1.386).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_08_detect_filter",
+   "id": "AS-08",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Faces under 60 px, outside the frame or within 5 px of an edge are not scored (reference detect).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_09_temporal_filter",
+   "id": "AS-09",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "TemporalFilter accepts only after N consecutive real frames (reference LIMITATIONS.md).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_10_inference_shapes[int8]",
+   "id": "AS-10",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.047,
+   "title": "Single, batch and empty inference behave as the reference (both FP32 and INT8).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_13_genuine_faces_pass[int8]",
+   "id": "AS-13",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.814,
+   "title": "Genuine faces (>= 64 px) are classified real (false-reject rate on the sample set).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_14_screen_attacks_detected[int8-screen replay (sub-pixel+moire+glare)]",
+   "id": "AS-14",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.123,
+   "title": "Screen-replay attacks (sub-pixel pattern, moire, glare, phone bezel) are classified spoof.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_14_screen_attacks_detected[int8-phone with bezel]",
+   "id": "AS-14",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.093,
+   "title": "Screen-replay attacks (sub-pixel pattern, moire, glare, phone bezel) are classified spoof.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_15_print_attacks_texture_only[int8-print (halftone)]",
+   "id": "AS-15",
+   "prefix": "AS",
+   "outcome": "xfailed",
+   "duration_s": 0.083,
+   "title": "Texture model alone vs simulated print / recapture (informational; defence in depth covers it).",
+   "message": "Known limitation: digitally simulated prints/recaptures are not detected by the texture model (trained on physical attacks). Mitigated by the active head-movement challenge (LV tests)."
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_15_print_attacks_texture_only[int8-recapture (low-res+JPEG)]",
+   "id": "AS-15",
+   "prefix": "AS",
+   "outcome": "xfailed",
+   "duration_s": 0.076,
+   "title": "Texture model alone vs simulated print / recapture (informational; defence in depth covers it).",
+   "message": "Known limitation: digitally simulated prints/recaptures are not detected by the texture model (trained on physical attacks). Mitigated by the active head-movement challenge (LV tests)."
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_10_inference_shapes[fp32]",
+   "id": "AS-10",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.045,
+   "title": "Single, batch and empty inference behave as the reference (both FP32 and INT8).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_13_genuine_faces_pass[fp32]",
+   "id": "AS-13",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.535,
+   "title": "Genuine faces (>= 64 px) are classified real (false-reject rate on the sample set).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_14_screen_attacks_detected[fp32-screen replay (sub-pixel+moire+glare)]",
+   "id": "AS-14",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.124,
+   "title": "Screen-replay attacks (sub-pixel pattern, moire, glare, phone bezel) are classified spoof.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_14_screen_attacks_detected[fp32-phone with bezel]",
+   "id": "AS-14",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.091,
+   "title": "Screen-replay attacks (sub-pixel pattern, moire, glare, phone bezel) are classified spoof.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_15_print_attacks_texture_only[fp32-print (halftone)]",
+   "id": "AS-15",
+   "prefix": "AS",
+   "outcome": "xfailed",
+   "duration_s": 0.073,
+   "title": "Texture model alone vs simulated print / recapture (informational; defence in depth covers it).",
+   "message": "Known limitation: digitally simulated prints/recaptures are not detected by the texture model (trained on physical attacks). Mitigated by the active head-movement challenge (LV tests)."
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_15_print_attacks_texture_only[fp32-recapture (low-res+JPEG)]",
+   "id": "AS-15",
+   "prefix": "AS",
+   "outcome": "xfailed",
+   "duration_s": 0.048,
+   "title": "Texture model alone vs simulated print / recapture (informational; defence in depth covers it).",
+   "message": "Known limitation: digitally simulated prints/recaptures are not detected by the texture model (trained on physical attacks). Mitigated by the active head-movement challenge (LV tests)."
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_11_model_integrity",
+   "id": "AS-11",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.001,
+   "title": "A model file that does not match its pinned SHA-256 is refused (supply-chain control).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_12_missing_model_fails_closed",
+   "id": "AS-12",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "A missing model raises (callers then refuse liveness) instead of silently passing.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_16_quality_gate_dark",
+   "id": "AS-16",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.102,
+   "title": "Very dark faces are not scored ('improve lighting'), never passed as real.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_17_quality_gate_backlight",
+   "id": "AS-17",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.037,
+   "title": "A dark face against a bright background is flagged as backlit (synthetic scene, no detector needed).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_18_quality_gate_blur",
+   "id": "AS-18",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.035,
+   "title": "A featureless (motion-blurred) face region is not scored.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_19_fp32_int8_agree",
+   "id": "AS-19",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.469,
+   "title": "FP32 and INT8 agree on every genuine and attack sample (quantisation does not change decisions).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_20_high_security_threshold_monotonic",
+   "id": "AS-20",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.467,
+   "title": "Raising the threshold (0.5 -> 0.8) never turns a spoof into real.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_21_sequence_verdict",
+   "id": "AS-21",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.05,
+   "title": "Sequence verdict needs N consecutive real frames AND >= 80% real; unscored frames never count as real.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_22_benchmark_gate",
+   "id": "AS-22",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 1.53,
+   "title": "Benchmark mirrors the reference Arm64 workflow: INT8 >= 60% smaller; p95 latency within budget.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_23_system_info",
+   "id": "AS-23",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.035,
+   "title": "CPU / provider information is reported (reference system.py).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_antispoof.py::test_AS_24_licence_shipped",
+   "id": "AS-24",
+   "prefix": "AS",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Apache-2.0 licence and source commit are shipped next to the models.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_FE_01_recognises_enrolled_person",
+   "id": "FE-01",
+   "prefix": "FE",
+   "outcome": "passed",
+   "duration_s": 0.121,
+   "title": "The enrolled person is matched in a group photo; margin over the next face is respected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_FE_02_impostors_rejected",
+   "id": "FE-02",
+   "prefix": "FE",
+   "outcome": "passed",
+   "duration_s": 0.099,
+   "title": "Nobody else in the group photo crosses the match threshold (false-accept check).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_FE_03_blur_removes_faces",
+   "id": "FE-03",
+   "prefix": "FE",
+   "outcome": "passed",
+   "duration_s": 0.793,
+   "title": "After anonymise(), the detector finds (almost) no confident faces in genuine images.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_FE_04_blur_irreversible_identity",
+   "id": "FE-04",
+   "prefix": "FE",
+   "outcome": "passed",
+   "duration_s": 3.605,
+   "title": "Defect D-11 regression: no blurred face matches its original (identity cosine < 0.42, all images).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_FE_05_persistent_blur_covers_missed_frames",
+   "id": "FE-05",
+   "prefix": "FE",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "A face missed by the detector for a few frames stays blurred (PersistentBlur hold).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_FE_06_fail_closed_full_blur",
+   "id": "FE-06",
+   "prefix": "FE",
+   "outcome": "passed",
+   "duration_s": 0.006,
+   "title": "blur_full destroys detail across the whole frame (used when detection fails).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_FE_07_selective_unblur_only_target",
+   "id": "FE-07",
+   "prefix": "FE",
+   "outcome": "passed",
+   "duration_s": 0.184,
+   "title": "Approved unblur reveals ONLY the requested person; everyone else stays blurred.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_FE_08_selective_unblur_unknown_person",
+   "id": "FE-08",
+   "prefix": "FE",
+   "outcome": "passed",
+   "duration_s": 0.13,
+   "title": "If the requested person is not in the footage, every face remains blurred.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_01_challenge_entropy",
+   "id": "LV-01",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.02,
+   "title": "Challenges are 3 random moves, never the same move twice in a row: 12 possible sequences.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps0]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.043,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps1]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.035,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps2]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps3]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.035,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps4]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps5]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.035,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps6]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps7]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps8]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps9]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.038,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps10]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_02_genuine_user_every_sequence[steps11]",
+   "id": "LV-02",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "A real user performing the requested sequence passes (all 12 sequences).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_03_face_geometry_variation[0.45]",
+   "id": "LV-03",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "Users with different neutral face geometry pass (no bias from a fixed pitch baseline).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_03_face_geometry_variation[0.55]",
+   "id": "LV-03",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.035,
+   "title": "Users with different neutral face geometry pass (no bias from a fixed pitch baseline).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_03_face_geometry_variation[0.65]",
+   "id": "LV-03",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "Users with different neutral face geometry pass (no bias from a fixed pitch baseline).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_04_printed_photo_moved",
+   "id": "LV-04",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.037,
+   "title": "Printed photo waved / tilted in front of the camera fails (pose never changes like a head).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_05_photo_swap",
+   "id": "LV-05",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "Swapping between photos of different poses fails (no intermediate poses).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_06_camera_covered_during_swap",
+   "id": "LV-06",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.035,
+   "title": "Covering the camera while swapping photos fails.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_07_prerecorded_wrong_order",
+   "id": "LV-07",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.04,
+   "title": "A pre-recorded video with the movements in another order fails.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_08_person_swap_mid_check",
+   "id": "LV-08",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.036,
+   "title": "A different person taking over mid-check fails.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_09_screen_replay_of_genuine_moves",
+   "id": "LV-09",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.053,
+   "title": "Correct moves shown on a phone/monitor (replay or live relay) fail on the texture check.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_10_intermittent_spoof_frames",
+   "id": "LV-10",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.044,
+   "title": "A sequence where texture flips real/spoof (no 3 consecutive real) fails.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_11_antispoof_missing_fails_closed",
+   "id": "LV-11",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.001,
+   "title": "With the anti-spoof model unavailable, liveness never passes (fail closed).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_12_too_few_frames_and_multi_face",
+   "id": "LV-12",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.082,
+   "title": "Too few frames, or two faces in view, are rejected.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_13_planar_photo_geometry",
+   "id": "LV-13",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.054,
+   "title": "A real photo rotated as a rigid plane (+/-50 deg) never reaches the yaw a head turn produces.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_faceengine.py::test_LV_14_passive_cctv_needs_movement_and_texture",
+   "id": "LV-14",
+   "prefix": "LV",
+   "outcome": "passed",
+   "duration_s": 0.042,
+   "title": "CCTV liveness = natural head movement AND anti-spoof; either missing -> review.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_media.py::test_MT_01_segments_complete_and_independent",
+   "id": "MT-01",
+   "prefix": "MT",
+   "outcome": "passed",
+   "duration_s": 1.263,
+   "title": "Segmenter output: all frames preserved, every encrypted segment decodes on its own without errors.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_media.py::test_MT_02_any_pipe_read_size[1]",
+   "id": "MT-02",
+   "prefix": "MT",
+   "outcome": "passed",
+   "duration_s": 0.399,
+   "title": "Boxes split across arbitrary pipe reads (1 byte .. 1 MiB) are reassembled correctly.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_media.py::test_MT_02_any_pipe_read_size[13]",
+   "id": "MT-02",
+   "prefix": "MT",
+   "outcome": "passed",
+   "duration_s": 0.327,
+   "title": "Boxes split across arbitrary pipe reads (1 byte .. 1 MiB) are reassembled correctly.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_media.py::test_MT_02_any_pipe_read_size[4096]",
+   "id": "MT-02",
+   "prefix": "MT",
+   "outcome": "passed",
+   "duration_s": 0.34,
+   "title": "Boxes split across arbitrary pipe reads (1 byte .. 1 MiB) are reassembled correctly.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_media.py::test_MT_02_any_pipe_read_size[1048576]",
+   "id": "MT-02",
+   "prefix": "MT",
+   "outcome": "passed",
+   "duration_s": 0.309,
+   "title": "Boxes split across arbitrary pipe reads (1 byte .. 1 MiB) are reassembled correctly.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_media.py::test_MT_03_corrupt_stream_rejected",
+   "id": "MT-03",
+   "prefix": "MT",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "A corrupt MP4 box size raises instead of writing garbage.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_media.py::test_MT_04_trimmed_multi_part_transcode",
+   "id": "MT-04",
+   "prefix": "MT",
+   "outcome": "passed",
+   "duration_s": 0.727,
+   "title": "transcode_many trims and concatenates parts into one playable clip with the expected length.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_media.py::test_MT_05_watermark_ascii_safe",
+   "id": "MT-05",
+   "prefix": "MT",
+   "outcome": "passed",
+   "duration_s": 0.019,
+   "title": "Watermark renders non-ASCII text safely and changes the frame.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_media.py::test_MT_06_no_plaintext_written",
+   "id": "MT-06",
+   "prefix": "MT",
+   "outcome": "passed",
+   "duration_s": 0.192,
+   "title": "Encrypted segment files contain no MP4 signatures (no plaintext video at rest).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_01_viewer_stream_is_blurred",
+   "id": "PL-01",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 7.05,
+   "title": "A viewer's stream (HLS with a scoped token) contains no detectable face while the camera does.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_02_raw_stream_denied_to_viewers",
+   "id": "PL-02",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 0.02,
+   "title": "A viewer token cannot open the raw path, another camera, or anything without a token.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_03_mediamtx_api_locked",
+   "id": "PL-03",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 0.001,
+   "title": "The MediaMTX control API refuses anonymous callers.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_04_blurred_recording",
+   "id": "PL-04",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 3.148,
+   "title": "Recorded blurred segments decrypt with the media key and contain no detectable faces.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_05_raw_recording_sealed",
+   "id": "PL-05",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 4.545,
+   "title": "Raw segments are sealed: the media key fails, the unlocked vault opens them and faces are present.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_06_no_plaintext_at_rest",
+   "id": "PL-06",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 0.003,
+   "title": "Nothing in the store is plaintext video (no MP4 boxes in any file, .part included).",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_07_segments_indexed",
+   "id": "PL-07",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "Every closed segment is reported to the API with camera, kind, times and size.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_08_cctv_photo_not_live",
+   "id": "PL-08",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 0.0,
+   "title": "CCTV attendance: a face that never turns (a photo) is reported NOT live, with anti-spoof evidence.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_09_attendance_evidence",
+   "id": "PL-09",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 1.096,
+   "title": "Attendance evidence: the scene image is blurred; the face crop is sealed to the vault.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_10_no_raw_without_vault",
+   "id": "PL-10",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 46.002,
+   "title": "With no vault configured, raw footage stops being recorded (fail closed); blurred continues.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_pipeline.py::test_PL_11_privacy_fails_closed_without_models",
+   "id": "PL-11",
+   "prefix": "PL",
+   "outcome": "passed",
+   "duration_s": 4.015,
+   "title": "If face models are missing, the privacy processor refuses to publish any stream.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_01_no_script_errors_any_view[viewer]",
+   "id": "UI-01",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 8.61,
+   "title": "Every view renders without JavaScript errors or CSP violations for each role.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_01_no_script_errors_any_view[operator]",
+   "id": "UI-01",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 8.557,
+   "title": "Every view renders without JavaScript errors or CSP violations for each role.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_01_no_script_errors_any_view[admin]",
+   "id": "UI-01",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 8.554,
+   "title": "Every view renders without JavaScript errors or CSP violations for each role.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_01_no_script_errors_any_view[superadmin]",
+   "id": "UI-01",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 8.527,
+   "title": "Every view renders without JavaScript errors or CSP violations for each role.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_02_viewer_least_privilege",
+   "id": "UI-02",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 3.753,
+   "title": "Viewer: no attendance/people/privacy/users/anti-spoof menus, no snapshot or export controls.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_03_operator_requests_but_cannot_approve",
+   "id": "UI-03",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 3.065,
+   "title": "Operator: can request unblur; sees no Approve, no export, no CSV export.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_04_admin_no_video_export_no_superadmin_role",
+   "id": "UI-04",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 3.127,
+   "title": "Admin: CSV export yes; video export no; cannot assign the superadmin role.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_05_superadmin_controls",
+   "id": "UI-05",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 3.105,
+   "title": "Super admin: export, snapshot, approve and the superadmin role are available.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_06_kiosk_role_locked_down",
+   "id": "UI-06",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 1.808,
+   "title": "Kiosk account: only the check-in screen; sidebar, rail and other menus hidden.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_07_kiosk_checkin_upload",
+   "id": "UI-07",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 11.769,
+   "title": "Kiosk check-in: 3-step challenge captured at 8 fps and uploaded (10-90 frames) with CSRF header.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_08_stored_xss_neutralised",
+   "id": "UI-08",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 3.95,
+   "title": "HTML/JS in names, reasons and alert text is rendered as text and never executes.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_09_export_requires_mfa_and_reason",
+   "id": "UI-09",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 3.26,
+   "title": "Export opens a step-up dialog (reason + authenticator code) before any export request is sent.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_10_unblur_approval_needs_passphrase_and_mfa",
+   "id": "UI-10",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 1.403,
+   "title": "Approving an unblur asks for the vault passphrase AND the authenticator code.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_11_antispoof_lab_image_mode",
+   "id": "UI-11",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 2.128,
+   "title": "Anti-spoof lab: model info renders; image test draws real/spoof boxes.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_12_antispoof_settings_admin_only",
+   "id": "UI-12",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 2.394,
+   "title": "Only admins see anti-spoof settings; operators see read-only status.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_13_csrf_header_on_writes",
+   "id": "UI-13",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 1.831,
+   "title": "Every state-changing request from the console carries the CSRF token.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_14_first_run_setup_wizard",
+   "id": "UI-14",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 4.067,
+   "title": "No accounts: the setup wizard (not sign-in) is shown; a wrong code is refused; the right one leads to MFA then vault.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_15_setup_hidden_when_accounts_exist",
+   "id": "UI-15",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 0.827,
+   "title": "With accounts present the setup screen never appears; sign-in is shown and offers no self-registration.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_16_invitation_registration",
+   "id": "UI-16",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 1.392,
+   "title": "An invitation link opens the registration screen, removes the token from the address bar, then enrols MFA.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_17_reset_and_invalid_links",
+   "id": "UI-17",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 1.544,
+   "title": "Reset links hide the username field; used/expired links explain what to do.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_18_users_invite_not_password",
+   "id": "UI-18",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 2.767,
+   "title": "Users page creates invitation links (never temporary passwords); admins cannot pick admin roles.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_19_command_palette_and_theme",
+   "id": "UI-19",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 2.904,
+   "title": "Ctrl+K opens the command palette and navigates by keyboard; the theme toggles and persists.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_20_accessibility_basics",
+   "id": "UI-20",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 4.005,
+   "title": "Icon-only buttons have accessible names; every input has a label; nav is keyboard-reachable.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_21_responsive_no_horizontal_scroll[390]",
+   "id": "UI-21",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 4.231,
+   "title": "No page-level horizontal scroll from phone to laptop width; mobile menu opens and closes.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_21_responsive_no_horizontal_scroll[768]",
+   "id": "UI-21",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 4.353,
+   "title": "No page-level horizontal scroll from phone to laptop width; mobile menu opens and closes.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_21_responsive_no_horizontal_scroll[1280]",
+   "id": "UI-21",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 3.328,
+   "title": "No page-level horizontal scroll from phone to laptop width; mobile menu opens and closes.",
+   "message": ""
+  },
+  {
+   "nodeid": "tests/test_ui.py::test_UI_22_reduced_motion_and_no_external_scripts",
+   "id": "UI-22",
+   "prefix": "UI",
+   "outcome": "passed",
+   "duration_s": 1.057,
+   "title": "Reduced-motion users get a still scene; scripts load only from self + the pinned hls.js CDN (CSP).",
+   "message": ""
+  }
+ ]
+}

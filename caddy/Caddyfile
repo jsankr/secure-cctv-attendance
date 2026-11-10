@@ -1,0 +1,48 @@
+{
+	admin off
+	servers {
+		protocols h1 h2
+	}
+}
+
+{$VMS_SITE_ADDRESS:https://vms.lan:8443} {
+	tls internal
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy no-referrer
+		Permissions-Policy "camera=(self), microphone=(), geolocation=(), payment=()"
+		Cross-Origin-Opener-Policy same-origin
+		Content-Security-Policy "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' wss:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+		X-Robots-Tag "noindex, nofollow"
+		-Server
+	}
+
+	# Search engines and scanners get nothing useful.
+	respond /robots.txt "User-agent: *
+Disallow: /" 200
+
+	# Internal endpoints are never reachable through the proxy.
+	respond /internal/* 404
+
+	handle /api/* {
+		request_body {
+			max_size 64MB
+		}
+		reverse_proxy api:8000
+	}
+	handle_path /webrtc/* {
+		reverse_proxy mediamtx:8889
+	}
+	handle_path /hls/* {
+		reverse_proxy mediamtx:8888
+	}
+	# MediaMTX playback is never exposed: recordings are encrypted and served via /api only.
+	handle {
+		root * /srv/web
+		try_files {path} /index.html
+		file_server
+	}
+}

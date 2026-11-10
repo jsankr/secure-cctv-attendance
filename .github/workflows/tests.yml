@@ -1,0 +1,73 @@
+# Runs every suite (functional, abuse, cyber, UI) plus the secret scan on each push and pull request.
+# main is only updated from a branch whose run is green.
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      VMS_HOME: ${{ github.workspace }}/.ci-home
+      PYTHONPATH: ${{ github.workspace }}/shared
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Secret scan (fails the build on any finding)
+        run: python3 scripts/secret_scan.py .
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            api/requirements.txt
+            worker/requirements.txt
+
+      - name: System packages
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+
+      - name: Python packages
+        run: |
+          python -m pip install -q -r api/requirements.txt -r worker/requirements.txt \
+            pytest==8.3.4 playwright==1.49.1 pillow certifi
+          python -m playwright install --with-deps chromium
+
+      - name: JavaScript syntax
+        run: for f in web/js/*.js; do node --check "$f"; done
+
+      - name: MediaMTX and face models (downloads verified against pinned SHA-256)
+        run: python -c "import run; print(run.ensure_mediamtx()); assert run.ensure_face_models()"
+
+      - name: All test suites
+        env:
+          VMS_MODELS_DIR: ${{ github.workspace }}/.ci-home/models
+          VMS_MEDIAMTX: ${{ github.workspace }}/.ci-home/bin/mediamtx
+          VMS_TEST_REPORT_JSON: ${{ github.workspace }}/.ci-home/results.json
+        run: python -m pytest tests -q -rfEx -p no:cacheprovider
+
+      - name: HTML report
+        if: always()
+        run: python tests/report.py .ci-home/results.json -o .ci-home/TEST_REPORT.html || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-report
+          path: |
+            .ci-home/TEST_REPORT.html
+            .ci-home/results.json
+          retention-days: 30
