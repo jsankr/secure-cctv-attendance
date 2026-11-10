@@ -809,7 +809,7 @@ def test_CY_22_stepup_success_not_throttled(app_env, su):
     if not S.get("real_video"):
         pytest.skip("ffmpeg needed to export a real segment")
     sa3 = make_user(app_env, su, "t_super3", "superadmin")
-    codes = [sa3.post(f"/api/recordings/{S['seg']}/export", json={"totp": "000000", "reason": "typo"}).status_code for _ in range(2)]
+    codes = [sa3.post(f"/api/recordings/{S['seg']}/export", json={"totp": "000000", "reason": "wrong code on purpose"}).status_code for _ in range(2)]
     for _ in range(4):  # the previous release counted these too and returned 429 on the 6th call
         r = sa3.post(f"/api/recordings/{S['seg']}/export", json={"totp": sa3.next_code(), "reason": "repeat export"})
         codes.append(r.status_code)

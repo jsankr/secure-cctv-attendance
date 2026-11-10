@@ -396,6 +396,12 @@
    "test": "API fixture (FN/AB/CY)",
    "issue": "The test super admin's password contained its username, so the new password policy correctly refused it and 60 dependent tests could not start.",
    "fix": "Fixture password no longer contains the username."
+  },
+  {
+   "id": "T-10",
+   "test": "CY-22",
+   "issue": "The wrong-code attempts used a 4-character reason, so they were refused as invalid input (422) before the code was checked.",
+   "fix": "Valid reason; the attempts now fail on the code (401) as intended."
   }
  ]
 }
