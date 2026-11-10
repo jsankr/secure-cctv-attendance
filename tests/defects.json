@@ -379,6 +379,12 @@
    "test": "UI-14",
    "issue": "Clicked the first button in the form, which was the show-password toggle, so the form never submitted.",
    "fix": "Submit buttons are explicitly type=submit; the test targets them."
+  },
+  {
+   "id": "T-09",
+   "test": "API fixture (FN/AB/CY)",
+   "issue": "The test super admin's password contained its username, so the new password policy correctly refused it and 60 dependent tests could not start.",
+   "fix": "Fixture password no longer contains the username."
   }
  ]
 }

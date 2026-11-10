@@ -21,7 +21,7 @@ import numpy as np  # noqa: E402
 from conftest import AS_DIR, DET, REC, ROOT  # noqa: E402
 
 SU_NAME = "principal"
-SU_PW = "Principal-Test-" + os.urandom(6).hex()  # generated per run; nothing is shipped
+SU_PW = "Gate-Ledger-Test-" + os.urandom(6).hex()  # must not contain the username (policy)  # generated per run; nothing is shipped
 VAULT_PW = "api test vault passphrase 2026"
 S: dict = {}
 

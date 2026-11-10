@@ -57,7 +57,7 @@ jobs:
           VMS_MODELS_DIR: ${{ github.workspace }}/.ci-home/models
           VMS_MEDIAMTX: ${{ github.workspace }}/.ci-home/bin/mediamtx
           VMS_TEST_REPORT_JSON: ${{ github.workspace }}/.ci-home/results.json
-        run: python -m pytest tests -q -rfEx -p no:cacheprovider
+        run: python -m pytest tests -q -rfEsx -p no:cacheprovider
 
       - name: HTML report
         if: always()
